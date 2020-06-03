@@ -1,9 +1,9 @@
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
-  name: remoteresources3s.razee.marketplace.redhat.com
+  name: remoteresources3s.marketplace.redhat.com
 spec:
-  group: razee.marketplace.redhat.com
+  group: marketplace.redhat.com
   names:
     kind: RemoteResourceS3
     listKind: RemoteResourceS3List
@@ -51,7 +51,8 @@ spec:
                         AccessKeyID stored in a secret on your cluster
                       properties:
                         valueFrom:
-                          description: 'TODO: annotation here ?'
+                          description: ValueFrom holds source for the environment
+                            variable's value. Cannot be used if value is not empty.
                           properties:
                             secretKeyRef:
                               description: SecretKeySelector selects a key of a Secret.
@@ -114,8 +115,8 @@ spec:
                     provider and api key. TODO: "used by aws and cos ?"'
                   properties:
                     apiKey:
-                      description: APIKey is the API Key for used to authenticate
-                        to your IBM Cloud Object Storage instance
+                      description: APIKey is the API Key used to authenticate to your
+                        IBM Cloud Object Storage instance
                       type: string
                     apiKeyRef:
                       description: APIKeyRef holds reference information used to locate
@@ -147,16 +148,17 @@ spec:
                           type: object
                       type: object
                     grantType:
-                      description: 'GrantType for IAM will usually be " "urn:ibm:params:oauth:grant-type:apikey""
-                        TODO:'
+                      description: GrantType determines what authentication flow be
+                        used to generate an access token. GrantType for IAM will usually
+                        be " "urn:ibm:params:oauth:grant-type:apikey""
                       type: string
                     responseType:
-                      description: 'ResponseType for IAM will usually be "cloud_iam"
-                        TODO:'
+                      description: ResponseType specifies which grant type your application
+                        is requesting. ResponseType for IAM will usually be "cloud_iam"
                       type: string
                     url:
-                      description: 'URL for IAM will usually be "https://iam.cloud.ibm.com/identity/token"
-                        TODO:'
+                      description: URL is the auth endpoint. URL for IAM will usually
+                        be "https://iam.cloud.ibm.com/identity/token"
                       type: string
                   type: object
               type: object
@@ -164,6 +166,7 @@ spec:
               description: Requests array contains information regarding the location
                 of your remote resource
               items:
+                description: Items holds requests that populate the Requests array
                 properties:
                   optional:
                     description: if download or applying child resource fails, RemoteResource
@@ -192,9 +195,17 @@ spec:
               type: array
           type: object
         status:
-          additionalProperties:
-            type: string
-          description: '}'
+          description: RemoteResourceS3Status defines the observed state of RemoteResourceS3
+          properties:
+            razeeLogs:
+              description: RazeeLogs test
+              properties:
+                error:
+                  additionalProperties:
+                    type: string
+                  description: Log holds a log message as <log hash>:<log message>
+                  type: object
+              type: object
           type: object
       type: object
   version: v1alpha2
