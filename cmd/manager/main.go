@@ -13,9 +13,9 @@ import (
 	_ "k8s.io/client-go/plugin/pkg/client/auth"
 	"k8s.io/client-go/rest"
 
-	"razee-operator/pkg/apis"
-	"razee-operator/pkg/controller"
-	"razee-operator/version"
+	"github.com/redhat-marketplace/razee-operator/pkg/apis"
+	"github.com/redhat-marketplace/razee-operator/pkg/controller"
+	"github.com/redhat-marketplace/razee-operator/version"
 
 	"github.com/operator-framework/operator-sdk/pkg/k8sutil"
 	kubemetrics "github.com/operator-framework/operator-sdk/pkg/kube-metrics"
