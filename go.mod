@@ -1,4 +1,4 @@
-module github.com/redhat-marketplace/redhat-marketplace-operator
+module github.com/redhat-marketplace/razee-operator
 
 go 1.13
 
