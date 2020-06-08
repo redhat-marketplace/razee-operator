@@ -1,7 +1,7 @@
 package apis
 
 import (
-	"razee-operator/pkg/apis/marketplace/v1alpha2"
+	"github.com/redhat-marketplace/razee-operator/pkg/apis/marketplace/v1alpha2"
 )
 
 func init() {
